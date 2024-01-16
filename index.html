@@ -16,6 +16,7 @@
   <body>
     <canvas></canvas>
     <script>
+      
       const canvasEl = document.querySelector("canvas"),
         canvasCtx = canvasEl.getContext("2d"),
         gapX = 10
@@ -106,14 +107,14 @@
         directionX: 1,
         directionY: 1,
         _calcPosition: function () {
-          // verifica se o jogador1 fez um ponto (x > largura do campo)
+          // verifica se o jogador 1 fez um ponto (x > largura do campo)
           if (this.x > field.w - this.r - rightPaddle.w - gapX) {
-            // verifica se a raquete direita esta na positaçao y da bola
+            // verifica se a raquete direita está na posição y da bola
             if (
               this.y + this.r > rightPaddle.y &&
               this.y - this.r < rightPaddle.y + rightPaddle.h
             ) {
-              //rebate a bola revertendo sinal
+              // rebate a bola intervertendo o sinal de X
               this._reverseX()
             } else {
               // pontuar o jogador 1
@@ -122,33 +123,34 @@
             }
           }
 
-          // verifica se o jogador 2 fez ponto (x < 0)
-          if (this.x < this.x < this.r + leftPaddle.w + gapX) {
-            // verifica se a raquete esquerda esta na posiçao Y da bola
-            if ( 
-              this.y + this.r > leftPaddle.y && 
-              this.y - this.r < leftPaddle.y + leftPaddle.h){
-              // rebatea bola invertendo o sinal de x
+          // verifica se o jogador 2 fez um ponto (x < 0)
+          if (this.x < this.r + leftPaddle.w + gapX) {
+            // verifica se a raquete esquerda está na posição y da bola
+            if (
+              this.y + this.r > leftPaddle.y &&
+              this.y - this.r < leftPaddle.y + leftPaddle.h
+            ) {
+              // rebate a bola intervertendo o sinal de X
               this._reverseX()
             } else {
-              // pontuar jogador 
+              // pontuar o jogador 2
               score.increaseComputer()
               this._pointUp()
             }
           }
 
-          //verifica as laterais superior e inferior do campo
+          // verifica as laterais superior e inferior do campo
           if (
             (this.y - this.r < 0 && this.directionY < 0) ||
             (this.y > field.h - this.r && this.directionY > 0)
-          )	{
-            //rebate a bola invertendo o sinal do eixo Y
+          ) {
+            // rebate a bola invertendo o sinal do eixo Y
             this._reverseY()
           }
-        },  
+        },
         _reverseX: function () {
-          // 1 * -1 =-1
-          //-1 * -1 = 1
+          // 1 * -1 = -1
+          // -1 * -1 = 1
           this.directionX *= -1
         },
         _reverseY: function () {
@@ -223,6 +225,7 @@
         mouse.x = e.pageX
         mouse.y = e.pageY
       })
+    
     </script>
   </body>
 </html>
